@@ -1,0 +1,15 @@
+organization: jarlungoodoo73
+
+targets:
+  typescript:
+    production_repo: jarlungoodoo73/stainless-app-node
+    publish:
+      npm: true
+
+  python:
+    production_repo: jarlungoodoo73/stainless-app-python
+    publish:
+      pypi: true
+
+openapi:
+  code_samples: false

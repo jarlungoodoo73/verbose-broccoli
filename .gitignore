@@ -23,3 +23,7 @@ e2e.test
 
 .history
 conformance-report/
+
+# Node.js (Stainless app)
+app/node_modules/
+app/dist/

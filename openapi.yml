@@ -1,0 +1,183 @@
+openapi: 3.1.0
+info:
+  title: Stainless App API
+  description: A simple REST API for managing items, designed to demonstrate Stainless SDK generation.
+  version: 1.0.0
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Health check
+      description: Returns the health status of the service.
+      tags:
+        - Health
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /items:
+    get:
+      operationId: listItems
+      summary: List all items
+      description: Returns a list of all items.
+      tags:
+        - Items
+      responses:
+        "200":
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemListResponse"
+    post:
+      operationId: createItem
+      summary: Create an item
+      description: Creates a new item and returns it.
+      tags:
+        - Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateItemRequest"
+      responses:
+        "201":
+          description: Item created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+        "400":
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /items/{id}:
+    get:
+      operationId: getItem
+      summary: Get an item
+      description: Returns a single item by ID.
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The item ID
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The requested item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+        "404":
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteItem
+      summary: Delete an item
+      description: Deletes an item by ID.
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The item ID
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Item deleted
+        "404":
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+      properties:
+        status:
+          type: string
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
+    Item:
+      type: object
+      required:
+        - id
+        - name
+        - description
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the item
+          example: 1
+        name:
+          type: string
+          description: Name of the item
+          example: Widget
+        description:
+          type: string
+          description: Description of the item
+          example: A generic widget
+    ItemListResponse:
+      type: object
+      required:
+        - items
+        - total
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Item"
+        total:
+          type: integer
+          description: Total number of items
+          example: 2
+    CreateItemRequest:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: Name of the item
+          example: Sprocket
+        description:
+          type: string
+          description: Description of the item
+          example: A useful sprocket
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Item not found
