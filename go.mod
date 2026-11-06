@@ -3,7 +3,6 @@ module github.com/github/github-mcp-server
 go 1.24.0
 
 require (
-	github.com/fatih/color v1.18.0
 	github.com/google/go-github/v79 v79.0.0
 	github.com/google/jsonschema-go v0.4.2
 	github.com/josephburnett/jd v1.9.2
@@ -21,8 +20,6 @@ require (
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
@@ -48,7 +45,7 @@ require (
 	github.com/sourcegraph/conc v0.3.1-0.20240121214520-5f936abd7ae8 // indirect
 	github.com/spf13/afero v1.15.0 // indirect
 	github.com/spf13/cast v1.10.0 // indirect
-	github.com/spf13/pflag v1.0.10
+	github.com/spf13/pflag v1.1.0
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2
 	golang.org/x/oauth2 v0.30.0 // indirect
